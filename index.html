@@ -5,7 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>Data Science Digital Library</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="style.css?v=2.1">
+  <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js" defer></script>
 </head>
 
 <body>
@@ -99,31 +102,29 @@
 
   <section class="slide" id="labs">
     <div class="wrap">
-      <h2>Lab / Experiments</h2>
-      <p class="lead">Five experiments. Click one to open it in the code editor.</p>
+      <h2>Experiments</h2>
+      <p class="lead">Six interactive experiments. Click one to compile, execute, and inspect live output.</p>
       <div class="grid">
-        <a class="item" href="#/exp/1"><span class="no">Exp 1</span><b>Data Import & Export</b>
-          <p>Read tabular data from CSV, JSON and Excel, build DataFrames from Python objects, and write multi-sheet
-            workbooks back out.</p>
+        <a class="item" href="#/exp/1"><span class="no">Exp 1</span><b>Hierarchical Indexing: Series</b>
+          <p>Create and manipulate MultiIndex Series with department and branch levels, slicing and label indexing.</p>
         </a>
-        <a class="item" href="#/exp/2"><span class="no">Exp 2</span><b>Data from APIs & SQL</b>
-          <p>Pull live records from a REST API and manage a SQLite database: tables, inserts, updates and deletes, read
-            straight into DataFrames.</p>
+        <a class="item" href="#/exp/2"><span class="no">Exp 2</span><b>Hierarchical Indexing: DataFrame</b>
+          <p>Build MultiIndex DataFrames from tuples and perform reshape operations with stack() and unstack().</p>
         </a>
         <a class="item" href="#/exp/3"><span class="no">Exp 3</span><b>Data Cleaning & Preprocessing</b>
-          <p>Missing data, mapping, outliers and regex.</p>
+          <p>Detect missing data with isna(), dropna() & fillna(), map categories, detect outliers, and split text with
+            regex.</p>
         </a>
-        <a class="item" href="#/exp/4"><span class="no">Exp 4</span><b>Hierarchical Indexing (MultiIndex)</b>
-          <p>Detect and handle missing values, map categories to numeric codes, rename columns and flag outliers in
-            generated data.</p>
+        <a class="item" href="#/exp/4"><span class="no">Exp 4</span><b>Indexing, Reshaping & Merging</b>
+          <p>Series MultiIndexing, tabular stack/unstack, and merging datasets using outer join and combine_first().</p>
         </a>
         <a class="item" href="#/exp/5"><span class="no">Exp 5</span><b>Data Visualization with Matplotlib & Seaborn</b>
-          <p>Explore the iris dataset, then answer questions A–E with line plots, bar charts, histograms, KDE curves,
-            scatter and box plots.</p>
+          <p>Explore the Iris dataset with statistical summaries, line plots, scatter plots, histograms, and subplots.
+          </p>
         </a>
         <a class="item" href="#/exp/6"><span class="no">Exp 6</span><b>Time Series Analysis</b>
           <p>Build time series from dates, localize and convert time zones, work with Periods and frequencies, and
-            resample / upsample / downsample data.</p>
+            resample data.</p>
         </a>
       </div>
     </div>
@@ -162,16 +163,16 @@
       <p class="lead">Free places to practice and read more.</p>
       <div class="grid">
         <div class="item"><b>V.S Code</b>
-          <p>Datasets, notebooks and free courses.</p><a href="https://www.kaggle.com" target="_blank"
-            rel="noopener">Open Kaggle</a>
+          <p>Datasets, notebooks and free courses.</p><a href="https://code.visualstudio.com/" target="_blank"
+            rel="noopener">Open VS Code</a>
         </div>
         <div class="item"><b>Google Colab</b>
           <p>Run Python in the browser, no setup.</p><a href="https://colab.research.google.com" target="_blank"
             rel="noopener">Open Colab</a>
         </div>
         <div class="item"><b>Notebook</b>
-          <p>Official user guide with examples.</p><a href="https://scikit-learn.org" target="_blank"
-            rel="noopener">Open guide</a>
+          <p>Official user guide with examples.</p><a href="https://jupyter.org/" target="_blank" rel="noopener">Open
+            Notebook</a>
         </div>
         <div class="item"><b>Pandas documentation</b>
           <p>Reference for DataFrame operations.</p><a href="https://pandas.pydata.org" target="_blank"
@@ -189,15 +190,19 @@
       <div class="grid">
         <div class="item"><b>Hardware-monitor</b>
           <p>real-time system performance monitoring desktop app</p>
-          <div class="social"><a href="#">GitHub</a></div>
+          <div class="social"><a href="https://github.com/Pathitharun/hardware-monitor">GitHub</a></div>
         </div>
         <div class="item"><b>profile website</b>
           <p>Created a responsive React-based portfolio website to present projects and profile professionally.</p>
-          <div class="social"><a href="#">GitHub</a></div>
+          <div class="social"><a href="https://github.com/Pathitharun/Myprofile">GitHub</a></div>
         </div>
         <div class="item"><b>Elli — AI Assistant</b>
           <p>Built an AI chatbot with real-time (Still in the progress)</p>
-          <div class="social"><a href="#">GitHub</a></div>
+          <div class="social"><a href="https://github.com/Pathitharun/project_AI">GitHub</a></div>
+        </div>
+        <div class="item"><b>DS Digital Library</b>
+          <p>A web application that serves as a digital library for Data Science students at MBU.</p>
+          <div class="social"><a href="https://github.com/Pathitharun/DS-Lab">GitHub</a></div>
         </div>
       </div>
     </div>
@@ -234,16 +239,47 @@
           <p id="xD"></p>
         </div>
         <div class="xbar">
-          <div><code id="xF"></code><small id="xC"></small></div>
-          <div><button class="btn2" id="xReset">Reset</button> <button class="btn2 go" id="xAll">&#9655; Run
-              all</button></div>
+          <div class="xbar-left"><code id="xF"></code><small id="xC"></small></div>
+          <div class="xbar-right">
+            <span id="pyStatus" class="pystatus py-loading" title="Python WebAssembly compiler status">
+              <span class="pydot"></span>
+              <span class="pylabel">Python 3.12 (Live Wasm)</span>
+            </span>
+            <button class="btn2" id="xReset" title="Reset Python variables">↺ Reset</button>
+            <button class="btn2 go" id="xEditorToggleBtn" title="Open Interactive Python Code Editor">💻 Editor</button>
+          </div>
         </div>
+
+        <div id="xCustomEditor" class="custom-editor-wrap" style="display: none;">
+          <div class="editor-header-bar">
+            <div class="editor-title">
+              <span class="editor-icon">⚡</span>
+              <b>Interactive Python Editor</b>
+              <small class="editor-subtitle">&middot; Persistent execution environment</small>
+            </div>
+            <div class="editor-actions">
+              <button class="btn2" id="editorClearBtn" title="Clear code">Clear</button>
+              <button class="btn2" id="editorResetBtn" title="Reset variables & session">↺ Reset</button>
+              <button class="btn2 go" id="editorRunBtn" title="Run code (Shift + Enter)">&#9655; Run Code</button>
+              <button class="btn2" id="editorBackBtn" title="Switch back to experiment notebook">📓 Notebook</button>
+            </div>
+          </div>
+          <div class="editor-box">
+            <textarea id="customEditorText" spellcheck="false"
+              placeholder="# Type any Python code here...&#10;import pandas as pd&#10;import numpy as np&#10;&#10;df = pd.DataFrame({&#10;    'Department': ['CSE', 'ECE', 'AI'],&#10;    'Students': [120, 95, 110]&#10;})&#10;print(df)&#10;df"></textarea>
+          </div>
+          <div class="editor-run-hint">
+            <span>Shortcut: <b>Shift + Enter</b> to run code &middot; <b>Tab</b> for 4 spaces</span>
+          </div>
+          <div id="editorOutput" class="out" style="display: none;"></div>
+        </div>
+
         <div id="xCells"></div>
       </div>
     </div>
   </section>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2.1"></script>
 </body>
 
 </html>
