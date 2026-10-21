@@ -4,37 +4,96 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description"
+    content="Data Science Digital Library for MBU students: modules, live Python lab experiments, a pandas cheat sheet, tools, resources and projects.">
+  <meta name="theme-color" content="#12223d">
+  <meta name="color-scheme" content="light dark">
+  <meta property="og:title" content="Data Science Digital Library">
+  <meta property="og:description"
+    content="Modules, live in-browser Python experiments, a cheat sheet and student projects for Data Science students at MBU.">
+  <meta property="og:type" content="website">
   <title>Data Science Digital Library</title>
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
-  <link rel="stylesheet" href="style.css?v=2.1">
+  <link rel="stylesheet" href="style.css?v=2.3">
   <script src="https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js" defer></script>
 </head>
 
 <body>
+  <a class="skip" href="#modules">Skip to content</a>
+  <div id="progress" aria-hidden="true"></div>
+
   <header>
     <div class="bar">
-      <h1 class="site-title">Data Science Digital Library</h1>
+      <h1 class="site-title"><span class="site-mark" aria-hidden="true">DS</span> Data Science Digital Library</h1>
       <nav aria-label="Main">
         <ul>
           <li><a href="#home" class="on">Home</a></li>
           <li><a href="#modules">Module</a></li>
           <li><a href="#labs">Experiments</a></li>
+          <li><a href="#cheatsheet">Cheatsheet</a></li>
           <li><a href="#tools">Tools</a></li>
           <li><a href="#resources">Resources</a></li>
           <li><a href="#projects">Projects</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </nav>
     </div>
   </header>
 
+  <!-- Side dots: jump between sections -->
+  <div class="dots" id="dots" aria-label="Page sections">
+    <a href="#home" data-s="home" title="Home"><span>Home</span></a>
+    <a href="#modules" data-s="modules" title="Modules"><span>Modules</span></a>
+    <a href="#path" data-s="path" title="Study path"><span>Path</span></a>
+    <a href="#labs" data-s="labs" title="Experiments"><span>Experiments</span></a>
+    <a href="#cheatsheet" data-s="cheatsheet" title="Cheatsheet"><span>Cheatsheet</span></a>
+    <a href="#tools" data-s="tools" title="Tools"><span>Tools</span></a>
+    <a href="#resources" data-s="resources" title="Resources"><span>Resources</span></a>
+    <a href="#projects" data-s="projects" title="Projects"><span>Projects</span></a>
+    <a href="#faq" data-s="faq" title="FAQ"><span>FAQ</span></a>
+  </div>
+
+  <!-- ===================== HOME ===================== -->
   <section class="slide home" id="home">
     <div class="wrap">
       <div>
+        <div class="hero-meta">
+          <span class="eyebrow">MBU &middot; Department of Data Science</span>
+          <span class="live-chip" title="Your local date and time"><i class="live-dot"></i><span
+              id="clock">Welcome</span></span>
+        </div>
         <h2>Learn data science, one module at a time</h2>
-        <p class="lead">A digital library for Data Science students at MBU: 5 modules, 6 lab experiments,tools,
-          resources and 3 student projects.</p>
-        <span class="hint">Scroll down to open the next slide</span>
+        <p class="lead">A digital library for Data Science students at MBU: 5 modules, 6 lab experiments, tools,
+          resources and 4 student projects.</p>
+        <p class="rotator" aria-live="off">Explore <b id="rot">MultiIndex &amp; reshaping</b></p>
+
+        <div class="btn-row">
+          <a class="btn-primary" href="#modules">Browse modules</a>
+          <a class="btn-ghost" href="#labs">Run an experiment</a>
+          <a class="btn-ghost" href="#cheatsheet">Open cheatsheet</a>
+        </div>
+
+        <ul class="stats" aria-label="Library at a glance">
+          <li><b data-count="5">5</b><span>Modules</span></li>
+          <li><b data-count="6">6</b><span>Experiments</span></li>
+          <li><b data-count="6">6</b><span>Tools</span></li>
+          <li><b data-count="4">4</b><span>Projects</span></li>
+        </ul>
+
+        <div class="chips" aria-label="Technologies">
+          <span class="chip">Python</span><span class="chip">Pandas</span><span class="chip">NumPy</span>
+          <span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span class="chip">Pyodide</span>
+        </div>
+
+        <ul class="feat" aria-label="Highlights">
+          <li><span aria-hidden="true">⚡</span><b>Runs in your browser</b><small>No installs — Python via
+              WebAssembly</small></li>
+          <li><span aria-hidden="true">📄</span><b>Module PDFs</b><small>Built-in reader with sidebar</small></li>
+          <li><span aria-hidden="true">🌙</span><b>Dark mode</b><small>Remembers your choice</small></li>
+        </ul>
+
+        <span class="hint">&#8595; Scroll down to open the next slide</span>
       </div>
       <aside class="card" aria-label="Student ID card">
         <div class="card-top">
@@ -42,12 +101,14 @@
             <img src="mbu-logo.png" alt="MBU Logo">
           </div>
           <div><strong>MBU</strong><small>Student ID Card</small></div>
+          <span class="card-badge">Active</span>
         </div>
         <div class="card-body">
           <label class="photo" id="photo" title="Click to add your photo">
             <img src="photo.png" alt="Photo of Pathi Tarun Naidu">
           </label>
           <h3>Pathi Tarun Naidu</h3>
+          <p class="card-role">Data Science Student</p>
           <dl>
             <div>
               <dt>Roll number</dt>
@@ -62,152 +123,551 @@
               <dd>S Bosubabu</dd>
             </div>
           </dl>
+          <div class="barcode" aria-hidden="true"></div>
           <div class="social"><a href="#">LinkedIn</a><a href="#">GitHub</a><a href="#">Instagram</a></div>
         </div>
       </aside>
     </div>
   </section>
 
+  <!-- ===================== MODULES ===================== -->
   <section class="slide" id="modules">
     <div class="wrap">
+      <span class="eyebrow">Study path</span>
       <h2>Modules</h2>
-      <p class="lead">Five modules, covered in order from basics to deployment.</p>
-      <div class="grid">
+      <p class="lead">Five modules, covered in order from basics to deployment. Each one opens as a PDF reader.</p>
+
+      <div class="toolbar">
+        <label class="search"><span class="sr">Filter modules</span>
+          <input type="search" id="modSearch" data-filter="#modGrid" placeholder="Filter modules…  (press / )"
+            autocomplete="off">
+        </label>
+        <span class="count" data-count-for="#modGrid" aria-live="polite"></span>
+      </div>
+
+      <div class="grid" id="modGrid">
         <a class="item" href="#/module/1"><span class="no">Module 1</span><b>Introduction to Data Science</b>
-          <p>Foundations of data science — what it is, the skills and tools it demand, and the four families of analysis
+          <p>Foundations of data science — what it is, the skills and tools it demands, and the four families of
+            analysis
             that decide what you actually do with the data once you have it.</p>
+          <div class="chips sm"><span class="chip">Basics</span><span class="chip">Analysis types</span></div>
+          <small class="meta">Suggested labs: Exp 1, 2</small>
+          <span class="item-foot">Open module <i class="arrow">&rarr;</i></span>
         </a>
         <a class="item" href="#/module/2"><span class="no">Module 2</span><b>Data Extraction</b>
           <p>This module introduces the process of obtaining raw data from diverse sources, including databases, APIs,
-            web
-            crawling, and flat files. It covers the tools and techniques used to extract and load data into a usable
+            web crawling, and flat files. It covers the tools and techniques used to extract and load data into a usable
             format.</p>
+          <div class="chips sm"><span class="chip">Databases</span><span class="chip">APIs</span><span class="chip">Web
+              crawling</span><span class="chip">Flat files</span></div>
+          <small class="meta">Suggested labs: Exp 3, 4</small>
+          <span class="item-foot">Open module <i class="arrow">&rarr;</i></span>
         </a>
         <a class="item" href="#/module/3"><span class="no">Module 3</span><b>Data Visualization</b>
           <p>The matplotlib API from first principles, then the pandas and seaborn plotting surface on top of it — every
             core plot type the lab record actually uses.</p>
+          <div class="chips sm"><span class="chip">Matplotlib</span><span class="chip">Pandas plots</span><span
+              class="chip">Seaborn</span></div>
+          <small class="meta">Suggested labs: Exp 5</small>
+          <span class="item-foot">Open module <i class="arrow">&rarr;</i></span>
         </a>
         <a class="item" href="#/module/4"><span class="no">Module 4</span><b>Statistical Thinking</b>
           <p>The longest module, and the statistical backbone of the course — distributions and how to summarise them,
             PMFs and CDFs, percentile ranks, and the three models that cover most real measurements.</p>
+          <div class="chips sm"><span class="chip">Distributions</span><span class="chip">PMF / CDF</span><span
+              class="chip">Percentile ranks</span></div>
+          <small class="meta">Suggested labs: Exp 5 (summaries)</small>
+          <span class="item-foot">Open module <i class="arrow">&rarr;</i></span>
         </a>
         <a class="item" href="#/module/5"><span class="no">Module 5</span><b>Time Series Analysis and Predictive
             Modeling</b>
           <p>Data with a time index behaves differently. Cleaning and plotting a series, smoothing it, measuring its
             self-similarity, then building and evaluating models against it.</p>
+          <div class="chips sm"><span class="chip">Smoothing</span><span class="chip">Autocorrelation</span><span
+              class="chip">Forecasting</span></div>
+          <small class="meta">Suggested labs: Exp 6</small>
+          <span class="item-foot">Open module <i class="arrow">&rarr;</i></span>
         </a>
       </div>
+      <p class="empty" data-empty-for="#modGrid" hidden>No modules match your filter.</p>
     </div>
   </section>
 
+  <!-- ===================== STUDY PATH ===================== -->
+  <section class="slide" id="path">
+    <div class="wrap">
+      <span class="eyebrow">Roadmap</span>
+      <h2>Suggested study path</h2>
+      <p class="lead">Read a module, then try the matching experiments. Tick each step as you finish it — your
+        progress is saved in this browser.</p>
+
+      <div class="pathhead">
+        <div class="pathbar" role="progressbar" aria-valuemin="0" aria-valuemax="5" aria-valuenow="0" id="pathBar">
+          <div id="pathFill"></div>
+        </div>
+        <span id="pathText">0 of 5 steps done</span>
+        <button class="btn2" id="pathReset" type="button">↺ Reset progress</button>
+      </div>
+
+      <ol class="timeline" id="timeline">
+        <li data-step="1">
+          <span class="node">1</span>
+          <div class="tl-card">
+            <h3>Start here</h3>
+            <p><a href="#/module/1">Module 1</a> explains what data science is. Warm up with
+              <a href="#/exp/1">Exp 1</a> and <a href="#/exp/2">Exp 2</a> on MultiIndex data.
+            </p>
+            <label class="check"><input type="checkbox" data-step="1"> Mark done</label>
+          </div>
+        </li>
+        <li data-step="2">
+          <span class="node">2</span>
+          <div class="tl-card">
+            <h3>Get &amp; clean data</h3>
+            <p><a href="#/module/2">Module 2</a> covers extraction. Practise with
+              <a href="#/exp/3">Exp 3</a> (cleaning) and <a href="#/exp/4">Exp 4</a> (merging).
+            </p>
+            <label class="check"><input type="checkbox" data-step="2"> Mark done</label>
+          </div>
+        </li>
+        <li data-step="3">
+          <span class="node">3</span>
+          <div class="tl-card">
+            <h3>Visualise it</h3>
+            <p><a href="#/module/3">Module 3</a> teaches plotting. Explore the Iris data in
+              <a href="#/exp/5">Exp 5</a>.
+            </p>
+            <label class="check"><input type="checkbox" data-step="3"> Mark done</label>
+          </div>
+        </li>
+        <li data-step="4">
+          <span class="node">4</span>
+          <div class="tl-card">
+            <h3>Think statistically</h3>
+            <p><a href="#/module/4">Module 4</a> is the longest — distributions, PMFs, CDFs and percentile ranks.
+              Revisit the summaries in <a href="#/exp/5">Exp 5</a>.</p>
+            <label class="check"><input type="checkbox" data-step="4"> Mark done</label>
+          </div>
+        </li>
+        <li data-step="5">
+          <span class="node">5</span>
+          <div class="tl-card">
+            <h3>Work with time</h3>
+            <p><a href="#/module/5">Module 5</a> covers time series and modeling. Finish with
+              <a href="#/exp/6">Exp 6</a>.
+            </p>
+            <label class="check"><input type="checkbox" data-step="5"> Mark done</label>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ===================== EXPERIMENTS ===================== -->
   <section class="slide" id="labs">
     <div class="wrap">
+      <span class="eyebrow">Hands-on</span>
       <h2>Experiments</h2>
-      <p class="lead">Six interactive experiments. Click one to compile, execute, and inspect live output.</p>
-      <div class="grid">
-        <a class="item" href="#/exp/1"><span class="no">Exp 1</span><b>Hierarchical Indexing: Series</b>
+      <p class="lead">Six interactive experiments. Click one to compile, execute, and inspect live output.
+        Python runs right in your browser — nothing to install.</p>
+
+      <div class="toolbar">
+        <label class="search"><span class="sr">Filter experiments</span>
+          <input type="search" id="labSearch" data-filter="#labGrid" placeholder="Filter experiments…  (try “merge”)"
+            autocomplete="off">
+        </label>
+        <div class="seg" role="group" aria-label="Filter by level" data-seg="#labGrid">
+          <button type="button" class="on" data-level="all" aria-pressed="true">All</button>
+          <button type="button" data-level="beginner" aria-pressed="false">Beginner</button>
+          <button type="button" data-level="intermediate" aria-pressed="false">Intermediate</button>
+          <button type="button" data-level="advanced" aria-pressed="false">Advanced</button>
+        </div>
+        <span class="count" data-count-for="#labGrid" aria-live="polite"></span>
+      </div>
+
+      <div class="grid" id="labGrid">
+        <a class="item" href="#/exp/1" data-level="beginner"><span class="no">Exp 1</span><b>Hierarchical Indexing:
+            Series</b>
           <p>Create and manipulate MultiIndex Series with department and branch levels, slicing and label indexing.</p>
+          <div class="fn"><code>MultiIndex</code><code>.loc[]</code></div>
+          <div class="chips sm"><span class="chip">Pandas</span><span class="chip lvl easy">Beginner</span></div>
+          <span class="item-foot">Run experiment <i class="arrow">&rarr;</i></span>
         </a>
-        <a class="item" href="#/exp/2"><span class="no">Exp 2</span><b>Hierarchical Indexing: DataFrame</b>
+        <a class="item" href="#/exp/2" data-level="beginner"><span class="no">Exp 2</span><b>Hierarchical Indexing:
+            DataFrame</b>
           <p>Build MultiIndex DataFrames from tuples and perform reshape operations with stack() and unstack().</p>
+          <div class="fn"><code>from_tuples()</code><code>stack()</code><code>unstack()</code></div>
+          <div class="chips sm"><span class="chip">Pandas</span><span class="chip lvl easy">Beginner</span></div>
+          <span class="item-foot">Run experiment <i class="arrow">&rarr;</i></span>
         </a>
-        <a class="item" href="#/exp/3"><span class="no">Exp 3</span><b>Data Cleaning & Preprocessing</b>
-          <p>Detect missing data with isna(), dropna() & fillna(), map categories, detect outliers, and split text with
+        <a class="item" href="#/exp/3" data-level="intermediate"><span class="no">Exp 3</span><b>Data Cleaning &amp;
+            Preprocessing</b>
+          <p>Detect missing data with isna(), dropna() &amp; fillna(), map categories, detect outliers, and split text
+            with
             regex.</p>
+          <div class="fn">
+            <code>isna()</code><code>dropna()</code><code>fillna()</code><code>map()</code><code>str.split()</code>
+          </div>
+          <div class="chips sm"><span class="chip">Pandas</span><span class="chip">Regex</span><span
+              class="chip lvl mid">Intermediate</span></div>
+          <span class="item-foot">Run experiment <i class="arrow">&rarr;</i></span>
         </a>
-        <a class="item" href="#/exp/4"><span class="no">Exp 4</span><b>Indexing, Reshaping & Merging</b>
+        <a class="item" href="#/exp/4" data-level="intermediate"><span class="no">Exp 4</span><b>Indexing, Reshaping
+            &amp; Merging</b>
           <p>Series MultiIndexing, tabular stack/unstack, and merging datasets using outer join and combine_first().</p>
+          <div class="fn"><code>merge(how="outer")</code><code>combine_first()</code></div>
+          <div class="chips sm"><span class="chip">Pandas</span><span class="chip lvl mid">Intermediate</span></div>
+          <span class="item-foot">Run experiment <i class="arrow">&rarr;</i></span>
         </a>
-        <a class="item" href="#/exp/5"><span class="no">Exp 5</span><b>Data Visualization with Matplotlib & Seaborn</b>
+        <a class="item" href="#/exp/5" data-level="intermediate"><span class="no">Exp 5</span><b>Data Visualization with
+            Matplotlib &amp; Seaborn</b>
           <p>Explore the Iris dataset with statistical summaries, line plots, scatter plots, histograms, and subplots.
           </p>
+          <div class="fn">
+            <code>describe()</code><code>plot()</code><code>scatter()</code><code>hist()</code><code>subplots()</code>
+          </div>
+          <div class="chips sm"><span class="chip">Matplotlib</span><span class="chip">Seaborn</span><span
+              class="chip">Iris dataset</span><span class="chip lvl mid">Intermediate</span></div>
+          <span class="item-foot">Run experiment <i class="arrow">&rarr;</i></span>
         </a>
-        <a class="item" href="#/exp/6"><span class="no">Exp 6</span><b>Time Series Analysis</b>
+        <a class="item" href="#/exp/6" data-level="advanced"><span class="no">Exp 6</span><b>Time Series Analysis</b>
           <p>Build time series from dates, localize and convert time zones, work with Periods and frequencies, and
             resample data.</p>
+          <div class="fn">
+            <code>date_range()</code><code>tz_localize()</code><code>tz_convert()</code><code>Period</code><code>resample()</code>
+          </div>
+          <div class="chips sm"><span class="chip">Pandas</span><span class="chip">Time zones</span><span
+              class="chip lvl hard">Advanced</span></div>
+          <span class="item-foot">Run experiment <i class="arrow">&rarr;</i></span>
         </a>
+      </div>
+      <p class="empty" data-empty-for="#labGrid" hidden>No experiments match your filter.</p>
+    </div>
+  </section>
+
+  <!-- ===================== CHEATSHEET ===================== -->
+  <section class="slide" id="cheatsheet">
+    <div class="wrap">
+      <span class="eyebrow">Quick reference</span>
+      <h2>Pandas cheatsheet</h2>
+      <p class="lead">The functions you use in the labs, grouped by topic. Copy a snippet and paste it into the
+        interactive editor inside any experiment.</p>
+
+      <div class="tabs" role="tablist" aria-label="Cheatsheet topics">
+        <button type="button" role="tab" id="t-index" aria-controls="cs-index" aria-selected="true">Indexing</button>
+        <button type="button" role="tab" id="t-clean" aria-controls="cs-clean" aria-selected="false">Cleaning</button>
+        <button type="button" role="tab" id="t-merge" aria-controls="cs-merge" aria-selected="false">Merging</button>
+        <button type="button" role="tab" id="t-plot" aria-controls="cs-plot" aria-selected="false">Plotting</button>
+        <button type="button" role="tab" id="t-time" aria-controls="cs-time" aria-selected="false">Time series</button>
+      </div>
+
+      <div class="panel" id="cs-index" role="tabpanel" aria-labelledby="t-index">
+        <div class="code-head"><span>MultiIndex &middot; Exp 1, 2, 4</span><button type="button"
+            class="copy">Copy</button></div>
+        <pre><code class="py">import pandas as pd
+
+idx = pd.MultiIndex.from_tuples(
+    [("CSE", "A"), ("CSE", "B"), ("ECE", "A"), ("ECE", "B")],
+    names=["dept", "branch"])
+s = pd.Series([120, 95, 110, 80], index=idx)
+
+s["CSE"]            # every branch of CSE
+s.loc[:, "A"]       # branch A in every dept
+df = s.unstack()    # inner level becomes columns
+df.stack()          # and back to a Series</code></pre>
+      </div>
+
+      <div class="panel" id="cs-clean" role="tabpanel" aria-labelledby="t-clean">
+        <div class="code-head"><span>Missing data, outliers, text &middot; Exp 3</span><button type="button"
+            class="copy">Copy</button></div>
+        <pre><code class="py">df.isna().sum()                      # missing values per column
+df.dropna()                          # drop rows containing NaN
+df.fillna({"marks": df["marks"].mean()})
+
+df["grade"].map({"A": 4, "B": 3, "C": 2})
+
+q1, q3 = df["marks"].quantile([0.25, 0.75])
+iqr = q3 - q1
+mask = (df["marks"] &lt; q1 - 1.5 * iqr) | (df["marks"] &gt; q3 + 1.5 * iqr)
+df[mask]                             # outliers (IQR rule)
+
+df["name"].str.split(r"\s+", expand=True)   # split text with regex</code></pre>
+      </div>
+
+      <div class="panel" id="cs-merge" role="tabpanel" aria-labelledby="t-merge">
+        <div class="code-head"><span>Joins &amp; combining &middot; Exp 4</span><button type="button"
+            class="copy">Copy</button></div>
+        <pre><code class="py">a = pd.DataFrame({"id": [1, 2, 3], "name": ["Asha", "Ravi", "Meena"]})
+b = pd.DataFrame({"id": [2, 3, 4], "marks": [78, 91, 66]})
+
+pd.merge(a, b, on="id", how="outer")   # keep every id from both
+
+x = pd.Series([1, None, 3])
+y = pd.Series([9, 8, 7])
+x.combine_first(y)                     # fill gaps in x using y</code></pre>
+      </div>
+
+      <div class="panel" id="cs-plot" role="tabpanel" aria-labelledby="t-plot">
+        <div class="code-head"><span>Matplotlib &amp; Seaborn &middot; Exp 5</span><button type="button"
+            class="copy">Copy</button></div>
+        <pre><code class="py">import matplotlib.pyplot as plt
+import seaborn as sns
+
+iris = sns.load_dataset("iris")
+iris.describe()                        # statistical summary
+
+fig, ax = plt.subplots(1, 3, figsize=(14, 4))
+ax[0].plot(iris["sepal_length"])                              # line
+ax[1].scatter(iris["sepal_length"], iris["petal_length"])     # scatter
+ax[2].hist(iris["petal_width"], bins=15)                      # histogram
+plt.show()</code></pre>
+      </div>
+
+      <div class="panel" id="cs-time" role="tabpanel" aria-labelledby="t-time">
+        <div class="code-head"><span>Dates, zones, periods &middot; Exp 6</span><button type="button"
+            class="copy">Copy</button></div>
+        <pre><code class="py">rng = pd.date_range("2024-01-01", periods=6, freq="D")
+ts = pd.Series(range(6), index=rng)
+
+ts_utc = ts.tz_localize("UTC")
+ts_utc.tz_convert("Asia/Kolkata")      # convert to Indian Standard Time
+
+p = pd.Period("2024-01", freq="M")
+p + 1                                  # the next month
+
+ts.resample("W").sum()                 # weekly totals</code></pre>
       </div>
     </div>
   </section>
 
+  <!-- ===================== TOOLS ===================== -->
   <section class="slide" id="tools">
     <div class="wrap">
+      <span class="eyebrow">Toolkit</span>
       <h2>Tools</h2>
       <p class="lead">The data science tools used in the labs and projects.</p>
       <div class="grid">
-        <div class="item"><b>Python</b>
+        <div class="item"><span class="icon" aria-hidden="true">🐍</span><b>Python</b>
           <p>Main programming language.</p>
+          <small class="meta">Language &middot; Used in every lab</small>
+          <div class="social"><a href="https://www.python.org" target="_blank" rel="noopener">python.org &#8599;</a>
+          </div>
         </div>
-        <div class="item"><b>Jupyter Notebook</b>
+        <div class="item"><span class="icon" aria-hidden="true">📓</span><b>Jupyter Notebook</b>
           <p>Write and run code with notes.</p>
+          <small class="meta">Environment &middot; Interactive notebooks</small>
+          <div class="social"><a href="https://jupyter.org" target="_blank" rel="noopener">jupyter.org &#8599;</a></div>
         </div>
-        <div class="item"><b>NumPy and Pandas</b>
+        <div class="item"><span class="icon" aria-hidden="true">🧮</span><b>NumPy and Pandas</b>
           <p>Numbers and tables of data.</p>
+          <small class="meta">Library &middot; Labs 1–4, 6</small>
+          <div class="social"><a href="https://numpy.org" target="_blank" rel="noopener">NumPy &#8599;</a><a
+              href="https://pandas.pydata.org" target="_blank" rel="noopener">Pandas &#8599;</a></div>
         </div>
-        <div class="item"><b>Matplotlib and Seaborn</b>
+        <div class="item"><span class="icon" aria-hidden="true">📊</span><b>Matplotlib and Seaborn</b>
           <p>Charts and plots.</p>
+          <small class="meta">Library &middot; Lab 5, Module 3</small>
+          <div class="social"><a href="https://matplotlib.org" target="_blank" rel="noopener">Matplotlib &#8599;</a><a
+              href="https://seaborn.pydata.org" target="_blank" rel="noopener">Seaborn &#8599;</a></div>
         </div>
-        <div class="item"><b>Scikit-learn</b>
+        <div class="item"><span class="icon" aria-hidden="true">🤖</span><b>Scikit-learn</b>
           <p>Machine learning models.</p>
+          <small class="meta">Library &middot; Predictive modeling</small>
+          <div class="social"><a href="https://scikit-learn.org" target="_blank" rel="noopener">scikit-learn.org
+              &#8599;</a></div>
         </div>
-        <div class="item"><b>Power BI</b>
+        <div class="item"><span class="icon" aria-hidden="true">📈</span><b>Power BI</b>
           <p>Business dashboards.</p>
+          <small class="meta">Application &middot; Reporting</small>
+          <div class="social"><a href="https://powerbi.microsoft.com" target="_blank" rel="noopener">Power BI
+              &#8599;</a></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===================== RESOURCES ===================== -->
   <section class="slide" id="resources">
     <div class="wrap">
+      <span class="eyebrow">Keep learning</span>
       <h2>Resources</h2>
       <p class="lead">Free places to practice and read more.</p>
       <div class="grid">
-        <div class="item"><b>V.S Code</b>
-          <p>Datasets, notebooks and free courses.</p><a href="https://code.visualstudio.com/" target="_blank"
-            rel="noopener">Open VS Code</a>
+        <div class="item"><span class="icon" aria-hidden="true">💻</span><b>V.S Code</b>
+          <p>Code editor for Python scripts and notebooks.</p>
+          <div class="chips sm"><span class="chip">Editor</span><span class="chip">Free</span></div>
+          <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Open VS Code &#8599;</a>
         </div>
-        <div class="item"><b>Google Colab</b>
-          <p>Run Python in the browser, no setup.</p><a href="https://colab.research.google.com" target="_blank"
-            rel="noopener">Open Colab</a>
+        <div class="item"><span class="icon" aria-hidden="true">☁️</span><b>Google Colab</b>
+          <p>Run Python in the browser, no setup.</p>
+          <div class="chips sm"><span class="chip">Cloud</span><span class="chip">Free tier</span></div>
+          <a href="https://colab.research.google.com" target="_blank" rel="noopener">Open Colab &#8599;</a>
         </div>
-        <div class="item"><b>Notebook</b>
-          <p>Official user guide with examples.</p><a href="https://jupyter.org/" target="_blank" rel="noopener">Open
-            Notebook</a>
+        <div class="item"><span class="icon" aria-hidden="true">📘</span><b>Jupyter</b>
+          <p>Official user guide with examples.</p>
+          <div class="chips sm"><span class="chip">Guide</span><span class="chip">Free</span></div>
+          <a href="https://jupyter.org/" target="_blank" rel="noopener">Open Jupyter &#8599;</a>
         </div>
-        <div class="item"><b>Pandas documentation</b>
-          <p>Reference for DataFrame operations.</p><a href="https://pandas.pydata.org" target="_blank"
-            rel="noopener">Open docs</a>
+        <div class="item"><span class="icon" aria-hidden="true">🐼</span><b>Pandas documentation</b>
+          <p>Reference for DataFrame operations.</p>
+          <div class="chips sm"><span class="chip">Docs</span><span class="chip">Free</span></div>
+          <a href="https://pandas.pydata.org" target="_blank" rel="noopener">Open docs &#8599;</a>
         </div>
-
+        <div class="item"><span class="icon" aria-hidden="true">🏆</span><b>Kaggle</b>
+          <p>Datasets, notebooks and free courses.</p>
+          <div class="chips sm"><span class="chip">Datasets</span><span class="chip">Courses</span><span
+              class="chip">Free</span></div>
+          <a href="https://www.kaggle.com" target="_blank" rel="noopener">Open Kaggle &#8599;</a>
+        </div>
+        <div class="item"><span class="icon" aria-hidden="true">📚</span><b>Python documentation</b>
+          <p>The official language reference and tutorial.</p>
+          <div class="chips sm"><span class="chip">Docs</span><span class="chip">Free</span></div>
+          <a href="https://docs.python.org/3/" target="_blank" rel="noopener">Open docs &#8599;</a>
+        </div>
+        <div class="item"><span class="icon" aria-hidden="true">🖼️</span><b>Matplotlib gallery</b>
+          <p>Example plots with source code to copy.</p>
+          <div class="chips sm"><span class="chip">Examples</span><span class="chip">Free</span></div>
+          <a href="https://matplotlib.org/stable/gallery/index.html" target="_blank" rel="noopener">Open gallery
+            &#8599;</a>
+        </div>
+        <div class="item"><span class="icon" aria-hidden="true">🌊</span><b>Seaborn tutorial</b>
+          <p>Statistical plots, explained step by step.</p>
+          <div class="chips sm"><span class="chip">Tutorial</span><span class="chip">Free</span></div>
+          <a href="https://seaborn.pydata.org/tutorial.html" target="_blank" rel="noopener">Open tutorial &#8599;</a>
+        </div>
       </div>
     </div>
   </section>
 
+  <!-- ===================== PROJECTS ===================== -->
   <section class="slide" id="projects">
     <div class="wrap">
+      <span class="eyebrow">Showcase</span>
       <h2>Projects</h2>
       <p class="lead">Four student projects built with the tools above.</p>
       <div class="grid">
-        <div class="item"><b>Hardware-monitor</b>
-          <p>real-time system performance monitoring desktop app</p>
+        <div class="item proj">
+          <div class="thumb t1" aria-hidden="true">🖥️</div>
+          <span class="badge done">Completed</span><b>Hardware-monitor</b>
+          <p>Real-time system performance monitoring desktop app.</p>
+          <div class="chips sm"><span class="chip">Python</span><span class="chip">Desktop app</span></div>
           <div class="social"><a href="https://github.com/Pathitharun/hardware-monitor">GitHub</a></div>
         </div>
-        <div class="item"><b>profile website</b>
+        <div class="item proj">
+          <div class="thumb t2" aria-hidden="true">🌐</div>
+          <span class="badge done">Completed</span><b>Profile website</b>
           <p>Created a responsive React-based portfolio website to present projects and profile professionally.</p>
+          <div class="chips sm"><span class="chip">React</span><span class="chip">Responsive</span><span
+              class="chip">Portfolio</span></div>
           <div class="social"><a href="https://github.com/Pathitharun/Myprofile">GitHub</a></div>
         </div>
-        <div class="item"><b>Elli — AI Assistant</b>
-          <p>Built an AI chatbot with real-time (Still in the progress)</p>
+        <div class="item proj">
+          <div class="thumb t3" aria-hidden="true">🤖</div>
+          <span class="badge wip">In progress</span><b>Elli — AI Assistant</b>
+          <p>Built an AI chatbot with real-time responses (still in progress).</p>
+          <div class="chips sm"><span class="chip">Python</span><span class="chip">AI</span><span
+              class="chip">Chatbot</span></div>
           <div class="social"><a href="https://github.com/Pathitharun/project_AI">GitHub</a></div>
         </div>
-        <div class="item"><b>DS Digital Library</b>
+        <div class="item proj">
+          <div class="thumb t4" aria-hidden="true">📚</div>
+          <span class="badge done">Live</span><b>DS Digital Library</b>
           <p>A web application that serves as a digital library for Data Science students at MBU.</p>
+          <div class="chips sm"><span class="chip">HTML</span><span class="chip">CSS</span><span
+              class="chip">JavaScript</span><span class="chip">Pyodide</span></div>
           <div class="social"><a href="https://github.com/Pathitharun/DS-Lab">GitHub</a></div>
         </div>
       </div>
     </div>
   </section>
 
+  <!-- ===================== FAQ ===================== -->
+  <section class="slide" id="faq">
+    <div class="wrap">
+      <span class="eyebrow">Help</span>
+      <h2>Questions</h2>
+      <p class="lead">Quick answers about how the library and its live Python experiments work.</p>
+
+      <div class="faqwrap">
+        <div class="faq">
+          <details name="faq" open>
+            <summary>Do I need to install Python?</summary>
+            <p>No. The experiments run Python in your browser using Pyodide (Python compiled to WebAssembly). The
+              runtime is downloaded the first time, so the first run can take a few seconds.</p>
+          </details>
+          <details name="faq">
+            <summary>What do the colours on the Python status badge mean?</summary>
+            <p>Orange means the runtime is still loading, green means it is ready, blue means code is running, and
+              grey means it is offline.</p>
+          </details>
+          <details name="faq">
+            <summary>Can I write my own code?</summary>
+            <p>Yes. Open an experiment and press <b>💻 Editor</b> for a free-form Python editor. Variables stay alive
+              between runs until you press <b>↺ Reset</b>.</p>
+          </details>
+          <details name="faq">
+            <summary>How do I read a module?</summary>
+            <p>Click a module card to open it in the built-in PDF reader. You can also load your own copy with the
+              <b>Open PDF from computer</b> button.
+            </p>
+          </details>
+          <details name="faq">
+            <summary>Does it work offline?</summary>
+            <p>The pages themselves do, but the Python runtime is loaded from a CDN, so you need an internet
+              connection to run experiments.</p>
+          </details>
+          <details name="faq">
+            <summary>Can I switch to dark mode?</summary>
+            <p>Use the round button at the bottom-left corner of the page. It remembers your choice next time.</p>
+          </details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer class="site-footer">
+    <div class="foot-wrap">
+      <div class="foot-brand">
+        <strong>Data Science Digital Library</strong>
+        <p>A study companion for Data Science students at MBU — modules, live Python experiments, a cheatsheet and
+          student projects in one place.</p>
+        <p class="small">Made by Pathi Tarun Naidu &middot; Roll no. 24102A030094 &middot; Faculty: S Bosubabu</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#modules">Modules</a></li>
+          <li><a href="#path">Study path</a></li>
+          <li><a href="#labs">Experiments</a></li>
+          <li><a href="#cheatsheet">Cheatsheet</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Projects</h4>
+        <ul>
+          <li><a href="https://github.com/Pathitharun/DS-Lab" target="_blank" rel="noopener">DS Digital Library</a></li>
+          <li><a href="https://github.com/Pathitharun/hardware-monitor" target="_blank"
+              rel="noopener">Hardware-monitor</a></li>
+          <li><a href="https://github.com/Pathitharun/Myprofile" target="_blank" rel="noopener">Profile website</a></li>
+          <li><a href="https://github.com/Pathitharun/project_AI" target="_blank" rel="noopener">Elli — AI Assistant</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>Built with HTML, CSS, JavaScript and Pyodide</span>
+      <span>v2.3 &middot; Last updated 21 Oct 2026</span>
+    </div>
+  </footer>
+
+  <a href="#home" id="toTop" aria-label="Back to top" title="Back to top">&#8593;</a>
+  <button id="themeToggle" class="theme-fab" type="button" aria-label="Switch to dark mode"
+    title="Switch to dark mode">🌙</button>
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <!-- ===================== VIEWERS (used by script.js) ===================== -->
   <section id="viewer" aria-label="Module viewer">
     <aside class="side">
       <a class="back" href="#modules">&larr; Back to library</a>
@@ -279,7 +739,300 @@
     </div>
   </section>
 
-  <script src="script.js?v=2.1"></script>
+  <script src="script.js?v=2.3"></script>
+
+  <!-- UI extras: theme, progress, reveal, count-up, clock, filters, tabs, copy, study-path tracker, shortcuts -->
+  <script>
+    (function () {
+      var root = document.documentElement;
+      function $(s, c) { return (c || document).querySelector(s); }
+      function $$(s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); }
+      var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      /* ---------- toast ---------- */
+      var toastEl = $('#toast'), toastT;
+      function toast(msg) {
+        if (!toastEl) return;
+        toastEl.textContent = msg;
+        toastEl.classList.add('show');
+        clearTimeout(toastT);
+        toastT = setTimeout(function () { toastEl.classList.remove('show'); }, 1800);
+      }
+
+      /* ---------- theme ---------- */
+      try {
+        var saved = localStorage.getItem('dslib-theme');
+        if (saved) root.setAttribute('data-theme', saved);
+      } catch (e) { }
+      var tt = $('#themeToggle');
+      function isDark() {
+        return root.getAttribute('data-theme') === 'dark' ||
+          (!root.getAttribute('data-theme') && window.matchMedia('(prefers-color-scheme: dark)').matches);
+      }
+      function syncThemeBtn() {
+        if (!tt) return;
+        var dark = isDark();
+        tt.textContent = dark ? '☀️' : '🌙';
+        tt.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
+        tt.title = dark ? 'Switch to light mode' : 'Switch to dark mode';
+      }
+      function toggleTheme() {
+        var next = isDark() ? 'light' : 'dark';
+        root.setAttribute('data-theme', next);
+        try { localStorage.setItem('dslib-theme', next); } catch (e) { }
+        syncThemeBtn();
+        toast(next === 'dark' ? 'Dark mode on' : 'Light mode on');
+      }
+      if (tt) tt.addEventListener('click', toggleTheme);
+      syncThemeBtn();
+
+      /* ---------- scroll progress + back to top ---------- */
+      var bar = $('#progress'), topBtn = $('#toTop');
+      function onScroll() {
+        var h = root.scrollHeight - root.clientHeight;
+        if (bar) bar.style.width = (h > 0 ? (root.scrollTop / h) * 100 : 0) + '%';
+        if (topBtn) topBtn.classList.toggle('show', root.scrollTop > 400);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+
+      /* ---------- reveal on scroll ---------- */
+      if ('IntersectionObserver' in window) {
+        root.classList.add('reveal-on');
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { threshold: 0.1 });
+        $$('.slide .item, .slide .stats li, .slide .tl-card, .slide .feat li, .slide .panel, .slide details').forEach(function (el, i) {
+          el.style.transitionDelay = (i % 6) * 60 + 'ms';
+          io.observe(el);
+        });
+
+        /* ---------- count-up for the stats ---------- */
+        if (!reduce) {
+          var cio = new IntersectionObserver(function (entries) {
+            entries.forEach(function (e) {
+              if (!e.isIntersecting) return;
+              var el = e.target, to = parseInt(el.getAttribute('data-count'), 10) || 0, t0 = null;
+              cio.unobserve(el);
+              function step(ts) {
+                if (t0 === null) t0 = ts;
+                var p = Math.min((ts - t0) / 900, 1);
+                el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3)));
+                if (p < 1) requestAnimationFrame(step); else el.textContent = to;
+              }
+              el.textContent = '0';
+              requestAnimationFrame(step);
+            });
+          }, { threshold: 0.6 });
+          $$('.stats b[data-count]').forEach(function (b) { cio.observe(b); });
+        }
+      }
+
+      /* ---------- greeting clock ---------- */
+      var clock = $('#clock');
+      function tick() {
+        if (!clock) return;
+        var d = new Date(), h = d.getHours();
+        var hi = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+        var date = d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short', year: 'numeric' });
+        var time = d.toLocaleTimeString('en-GB', { hour: 'numeric', minute: '2-digit', hour12: true });
+        clock.textContent = hi + ' · ' + date + ' · ' + time;
+      }
+      tick();
+      setInterval(tick, 30000);
+
+      /* ---------- rotating topics ---------- */
+      var rot = $('#rot');
+      if (rot && !reduce) {
+        var words = ['MultiIndex & reshaping', 'Data cleaning', 'Merging datasets', 'Seaborn & Matplotlib', 'Statistical thinking', 'Time series'];
+        var wi = 0;
+        setInterval(function () {
+          rot.classList.add('swap');
+          setTimeout(function () {
+            wi = (wi + 1) % words.length;
+            rot.textContent = words[wi];
+            rot.classList.remove('swap');
+          }, 280);
+        }, 2600);
+      }
+
+      /* ---------- filters (search + level) ---------- */
+      function applyFilter(grid) {
+        var q = (grid._q || '').toLowerCase(), lvl = grid._lvl || 'all', shown = 0;
+        var items = $$('.item', grid);
+        items.forEach(function (it) {
+          var ok = (!q || it.textContent.toLowerCase().indexOf(q) > -1) &&
+            (lvl === 'all' || it.getAttribute('data-level') === lvl);
+          it.classList.toggle('is-hidden', !ok);
+          if (ok) shown++;
+        });
+        var cnt = $('[data-count-for="#' + grid.id + '"]');
+        if (cnt) cnt.textContent = shown + ' of ' + items.length + ' shown';
+        var em = $('[data-empty-for="#' + grid.id + '"]');
+        if (em) em.hidden = shown > 0;
+      }
+      $$('[data-filter]').forEach(function (inp) {
+        var grid = $(inp.getAttribute('data-filter'));
+        if (!grid) return;
+        inp.addEventListener('input', function () { grid._q = inp.value.trim(); applyFilter(grid); });
+        applyFilter(grid);
+      });
+      $$('[data-seg]').forEach(function (seg) {
+        var grid = $(seg.getAttribute('data-seg'));
+        if (!grid) return;
+        seg.addEventListener('click', function (e) {
+          var b = e.target.closest('button[data-level]');
+          if (!b) return;
+          $$('button', seg).forEach(function (x) {
+            var on = x === b;
+            x.classList.toggle('on', on);
+            x.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+          grid._lvl = b.getAttribute('data-level');
+          applyFilter(grid);
+        });
+      });
+
+      /* ---------- cheatsheet: highlight, tabs, copy ---------- */
+      var re = /(#.*$)|("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*')|\b(import|from|as|for|in|if|else|True|False|None)\b|\b(\d+(?:\.\d+)?)\b|\b([A-Za-z_]\w*)(?=\()/gm;
+      $$('code.py').forEach(function (el) {
+        var s = el.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        el.innerHTML = s.replace(re, function (m, c, str, k, n, f) {
+          if (c) return '<span class="tk-c">' + c + '</span>';
+          if (str) return '<span class="tk-s">' + str + '</span>';
+          if (k) return '<span class="tk-k">' + k + '</span>';
+          if (n) return '<span class="tk-n">' + n + '</span>';
+          if (f) return '<span class="tk-f">' + f + '</span>';
+          return m;
+        });
+      });
+
+      var tabs = $$('.tabs [role="tab"]');
+      function showTab(tab) {
+        tabs.forEach(function (t) {
+          var on = t === tab;
+          t.setAttribute('aria-selected', on ? 'true' : 'false');
+          t.tabIndex = on ? 0 : -1;
+          var p = document.getElementById(t.getAttribute('aria-controls'));
+          if (p) p.hidden = !on;
+        });
+      }
+      if (tabs.length) {
+        tabs.forEach(function (t, i) {
+          t.addEventListener('click', function () { showTab(t); });
+          t.addEventListener('keydown', function (e) {
+            var n = e.key === 'ArrowRight' ? i + 1 : e.key === 'ArrowLeft' ? i - 1 : null;
+            if (n === null) return;
+            n = (n + tabs.length) % tabs.length;
+            tabs[n].focus(); showTab(tabs[n]); e.preventDefault();
+          });
+        });
+        showTab(tabs[0]);
+      }
+
+      function copyText(txt) {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          return navigator.clipboard.writeText(txt);
+        }
+        return new Promise(function (res, rej) {
+          var ta = document.createElement('textarea');
+          ta.value = txt; ta.style.position = 'fixed'; ta.style.opacity = '0';
+          document.body.appendChild(ta); ta.select();
+          try { document.execCommand('copy') ? res() : rej(); } catch (e) { rej(e); }
+          document.body.removeChild(ta);
+        });
+      }
+      $$('.copy').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var code = $('code', btn.closest('.panel'));
+          copyText(code ? code.textContent : '').then(function () {
+            btn.textContent = 'Copied ✓';
+            toast('Snippet copied to clipboard');
+            setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+          }, function () { toast('Press Ctrl + C to copy'); });
+        });
+      });
+
+      /* ---------- study-path tracker (saved in this browser) ---------- */
+      var boxes = $$('#timeline input[type="checkbox"]');
+      var KEY = 'dslib-path';
+      function loadPath() { try { return JSON.parse(localStorage.getItem(KEY) || '[]'); } catch (e) { return []; } }
+      function savePath(a) { try { localStorage.setItem(KEY, JSON.stringify(a)); } catch (e) { } }
+      function renderPath() {
+        var done = boxes.filter(function (b) { return b.checked; }).length;
+        boxes.forEach(function (b) { b.closest('li').classList.toggle('done', b.checked); });
+        var fill = $('#pathFill'), txt = $('#pathText'), pb = $('#pathBar');
+        if (fill) fill.style.width = (done / boxes.length * 100) + '%';
+        if (pb) pb.setAttribute('aria-valuenow', done);
+        if (txt) txt.textContent = done === boxes.length ? 'All steps done — nice work! 🎉' : done + ' of ' + boxes.length + ' steps done';
+      }
+      if (boxes.length) {
+        var done0 = loadPath();
+        boxes.forEach(function (b) {
+          b.checked = done0.indexOf(b.getAttribute('data-step')) > -1;
+          b.addEventListener('change', function () {
+            savePath(boxes.filter(function (x) { return x.checked; }).map(function (x) { return x.getAttribute('data-step'); }));
+            renderPath();
+          });
+        });
+        var rs = $('#pathReset');
+        if (rs) rs.addEventListener('click', function () {
+          boxes.forEach(function (b) { b.checked = false; });
+          savePath([]); renderPath(); toast('Progress reset');
+        });
+        renderPath();
+      }
+
+      /* ---------- side dots: which section is on screen ---------- */
+      /* Also keeps the top-bar highlight (nav a.on) in sync with the visible slide */
+      var current = 'home', ticking = false;
+      var dots = $$('#dots a'), navLinks = $$('header nav a');
+      function markNav(href) {
+        navLinks.forEach(function (a) { a.classList.toggle('on', a.getAttribute('href') === href); });
+      }
+      function spy() {
+        ticking = false;
+        var b = document.body;
+        if (b.classList.contains('view') || b.classList.contains('viewx')) return;
+        var probe = window.innerHeight * 0.4, id = current, slides = $$('.slide');
+        for (var i = 0; i < slides.length; i++) {
+          var r = slides[i].getBoundingClientRect();
+          if (r.top <= probe && r.bottom > probe) { id = slides[i].id; break; }
+        }
+        current = id;
+        markNav('#' + (id === 'path' ? 'modules' : id));   /* "Path" has no tab, so show Module */
+        dots.forEach(function (d) { d.classList.toggle('on', d.getAttribute('data-s') === current); });
+      }
+      function queueSpy() {
+        if (!ticking) { ticking = true; requestAnimationFrame(spy); }
+      }
+      window.addEventListener('scroll', queueSpy, { passive: true });
+      window.addEventListener('resize', queueSpy);
+      window.addEventListener('hashchange', function () { setTimeout(spy, 60); });
+      navLinks.forEach(function (a) {
+        a.addEventListener('click', function () { markNav(a.getAttribute('href')); });
+      });
+      spy();
+
+      /* ---------- quick keys: "/" focuses the filter box, "T" toggles the theme ---------- */
+      document.addEventListener('keydown', function (e) {
+        var t = e.target, tag = t && t.tagName;
+        if (e.ctrlKey || e.metaKey || e.altKey) return;
+        if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || (t && t.isContentEditable)) {
+          if (e.key === 'Escape' && tag === 'INPUT') t.blur();
+          return;
+        }
+        if (e.key === '/') {
+          var target = current === 'labs' ? $('#labSearch') : $('#modSearch');
+          if (target) { e.preventDefault(); target.focus(); }
+        } else if (e.key === 't' || e.key === 'T') {
+          toggleTheme();
+        }
+      });
+    })();
+  </script>
 </body>
 
 </html>
